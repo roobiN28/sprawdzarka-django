@@ -1,0 +1,21 @@
+{% extends "view/main_template.html" %}
+{% block title %}Dodaj test{% endblock %}
+{% block content %}
+    <h1>Dodaj test</h1>
+    <hr/>
+
+    <form name="form" action="/test/add" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="input_data">Dane wejściowe</label>
+            <textarea class="form-control" id="input_data" rows="8"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="output_data">Dane wejściowe</label>
+            <textarea class="form-control" id="output_data" rows="8"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+{% endblock %}

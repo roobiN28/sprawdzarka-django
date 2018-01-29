@@ -1,0 +1,9 @@
+{% extends "view/main_template.html" %}
+{% block title %}Sprawdzarka{% endblock %}
+{% block content %}
+    <h1>Dodano rozwiązanie algorytmu</h1>
+    <hr/>
+    <span>Pomyślnie dodano rozwiązanie. Aby zobaczyć wyniki przejdź pod adres: </span>
+    <a href="/solution/details/{{ solution.id }}">Przejdź do rezultatów</a>
+
+{% endblock %}

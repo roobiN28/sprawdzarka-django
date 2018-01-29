@@ -1,0 +1,12 @@
+{% extends "view/main_template.html" %}
+{% block title %}Rozwiązania{% endblock %}
+{% block content %}
+    <h1>Lista programów</h1>
+    <hr/>
+
+    <div class="list-group">
+        {% for solution in solutions %}
+            <a href="/solution/details/{{ solution.id }}/" class="list-group-item list-group-item-action">{{ solution.id }} - {{ solution.add_date }} </a>
+        {% endfor %}
+    </div>
+{% endblock %}

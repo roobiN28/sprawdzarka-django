@@ -1,0 +1,35 @@
+{% extends "view/main_template.html" %}
+{% block title %}Rozwiązanie{% endblock %}
+{% block content %}
+    <h1>Rozwiazanie z: {{ solution.add_date }}</h1>
+    <hr/>
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample">
+            Pokaż kod
+        </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <pre><code>{{ solution.program_code | safe }}</code></pre>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Time</th>
+            <th scope="col">Result</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for testResult in solution.testResults %}
+            <tr>
+                <th scope="row">{{ testResult.id }}</th>
+                <td>{{ testResult.time }}</td>
+                <td>{{ testResult.result }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

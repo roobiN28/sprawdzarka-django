@@ -1,4 +1,6 @@
 body {
-    color: chocolate;
-	background-image: url("/static/images/background.jpg");
+	/*background-image: url("/static/images/background.jpg");*/
+}
+#main_container {
+    padding-top: 2rem;
 }

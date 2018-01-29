@@ -16,11 +16,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
           integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
+
+    <img src="/open-iconic/svg/home.svg">
 </head>
 <body>
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="#">Sprawdzarka</a>
+        <a class="navbar-brand" href="/">Sprawdzarka</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -28,16 +30,19 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Dodaj rozwiązanie</a>
+                    <a class="nav-link" href="/test/add">Dodaj test</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Zobacz rozwiązania</a>
+                    <a class="nav-link" href="/solution/add">Dodaj rozwiązanie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/solution/list">Zobacz rozwiązania</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="container">
+<div id="main_container" class="container">
     {% block content %}
         Body content
     {% endblock %}

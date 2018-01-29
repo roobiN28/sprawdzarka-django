@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, Boolean
 
 
-class Test(object):
+class TestResult(object):
     __tablename__ = 'test_result'
     id = Column(Integer, primary_key=True)
     solution_id = Column(Integer)
