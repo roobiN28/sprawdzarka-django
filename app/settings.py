@@ -25,11 +25,12 @@ SECRET_KEY = '*+c$u5d%jk9)fu$#@m=27o5#0ij6(*p(fyglokb!r)jbbl#9r!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['powerful-tundra-37220.herokuapp.com', 'localhost']
-
+# ALLOWED_HOSTS = ['powerful-tundra-37220.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'app.apps.SprConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

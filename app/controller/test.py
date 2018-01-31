@@ -2,13 +2,14 @@ import random
 
 from django.shortcuts import render
 
-from app.entity.Test import Test
+from app.models import Test
 
 
 def add(request):
     if request.method == "POST":
         # dodanie do bazy i zwrócenie
         t = createTest()
+        t.save()
         return render(request, 'view/test/added.html', {'test': t})
 
     else:
