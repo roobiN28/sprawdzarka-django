@@ -2,6 +2,10 @@ from app.models import Solution
 
 class SolutionService(object):
 
+    def addSolution(self, program_code,add_data,test_id,testResult_id):
+        solution =Solution(program_code,add_data,test_id,testResult_id)
+        solution.save();
+
     def get_all_slution(self):
         return Solution.objects.all()
 

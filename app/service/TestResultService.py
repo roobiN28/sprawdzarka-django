@@ -1,6 +1,9 @@
 from app.models import TestResult
 
 class TestResultServices(object):
+    def addTestResult(self, value):
+        testResult=TestResult(value)
+        testResult.save();
 
     def get_test_result(self, id):
         return TestResult.objects.get(pk=id)

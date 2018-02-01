@@ -2,8 +2,9 @@ from app.models import Test
 
 class TestService(object):
 
-    def addTest(self, test):
-        test.save();
+    def addTest(self, test_name,input_data,output_data):
+        t =Test(self.test_name,self.input_data,self.output_data)
+        t.save();
         # dodawanie do bazy danych tego testu, ale to chyba bedzie obsługiwane bezposrednio przez formularz??
 
     def getTest(self,test_id):
