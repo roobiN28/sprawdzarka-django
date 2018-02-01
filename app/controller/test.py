@@ -10,9 +10,11 @@ def add(request):
     # context = RequestContext(request)
     if request.method == "POST":
         t = Test()
+        # tutaj trzeba własnie wycignac dane z formuarza--------
         t.test_name = 'dodaj'
         t.input_data = 'input_data'
         t.output_data = 'output_data'
+        # --------- sam zapis do bazy działa poprawnie
         t.save()
         return render(request,'view/test/added.html', {'test': t})
 
