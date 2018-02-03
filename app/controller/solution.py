@@ -3,8 +3,7 @@ import random
 
 from django.shortcuts import render
 
-from app.entity.Solution import Solution
-from app.entity.TestResult import TestResult
+from app.models import Solution, TestResult
 
 
 def add(request):
