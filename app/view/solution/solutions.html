@@ -6,7 +6,10 @@
 
     <div class="list-group">
         {% for solution in solutions %}
-            <a href="/solution/details/{{ solution.id }}/" class="list-group-item list-group-item-action">{{ solution.id }} - {{ solution.add_date }} </a>
+            <a href="/solution/details/{{ solution.id }}/" class="list-group-item list-group-item-action">
+                {{ solution.add_date }}
+                <span class="badge badge-success pull-right">OK</span>
+            </a>
         {% endfor %}
     </div>
 {% endblock %}

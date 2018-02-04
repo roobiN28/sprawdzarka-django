@@ -1,0 +1,18 @@
+{% extends "view/main_template.html" %}
+{% block title %}Sprawdzarka{% endblock %}
+{% block content %}
+    <h1>Dodaj algorytm</h1>
+    <hr/>
+
+    <form name="form" action="/solution/add" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.program_code.id_for_label }}">{{ form.program_code.label }}</label>
+            <textarea class="form-control" id="{{ form.program_code.id_for_label }}" name="{{ form.program_code.name }}"
+                      rows="15"
+                      value="{{ form.program_code.value }}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+    </form>
+
+{% endblock %}

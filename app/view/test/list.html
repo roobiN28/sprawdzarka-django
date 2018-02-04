@@ -1,0 +1,37 @@
+{% extends "view/main_template.html" %}
+{% block title %}Testy{% endblock %}
+{% block js %}
+    {% comment %}    <script>
+        $('.collapse').collapse()
+    </script>{% endcomment %}
+{% endblock %}
+{% block content %}
+    <h1>Lista testów</h1>
+    <hr/>
+
+    <div id="accordion-test">
+        {% for test in model %}
+            <div class="card">
+                <div class="card-header d-flex justify-content-center" id="heading{{ test.id }}"
+                     data-toggle="collapse" data-target="#collapse{{ test.id }}"
+                     aria-expanded="true" aria-controls="collapse{{ test.id }}">
+                    <span>{{ test.add_date }}</span>
+                </div>
+                <div id="collapse{{ test.id }}" class="collapse" aria-labelledby="heading{{ test.id }}"
+                     data-parent="#accordion">
+                    <div class="card-body row">
+                        <div class="col">
+                            <pre><code>{{ test.input_data | safe }}</code></pre>
+                        </div>
+                        <div class="col">
+                            <pre><code>{{ test.output_data | safe }}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+    </div>
+{% endblock %}

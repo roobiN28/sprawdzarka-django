@@ -19,9 +19,10 @@ from app.controller import homepage, solution, test
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', homepage.index),
-    path('solution/add', solution.add),
-    path('solution/list', solution.showAll),
-    path('solution/details/<int:id>/', solution.details),
-    path('test/add', test.add),
+    path('', homepage.index, name="homepage"),
+    path('solution/add', solution.add, name="solution_add"),
+    path('solution/list', solution.showAll, name="solution_list"),
+    path('solution/details/<int:id>/', solution.details, name="solution_details"),
+    path('test/add', test.add, name="test_add"),
+    path('test/list', test.list, name='test_list'),
 ]

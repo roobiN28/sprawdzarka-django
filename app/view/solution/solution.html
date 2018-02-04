@@ -17,17 +17,21 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">ID</th>
             <th scope="col">Time</th>
             <th scope="col">Result</th>
         </tr>
         </thead>
         <tbody>
-        {% for testResult in solution.testResults %}
+        {% for testResult in solution.testresult_set.all %}
             <tr>
-                <th scope="row">{{ testResult.id }}</th>
-                <td>{{ testResult.time }}</td>
-                <td>{{ testResult.result }}</td>
+                <td>{{ testResult.time }}ms???</td>
+                <td>
+                    {% if testResult.result %}
+                        <span class="badge badge-success">OK</span>
+                    {% else %}
+                        <span class="badge badge-error">Błąd</span>
+                    {% endif %}
+                </td>
             </tr>
         {% endfor %}
         </tbody>

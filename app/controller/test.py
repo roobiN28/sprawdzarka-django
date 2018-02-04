@@ -1,33 +1,18 @@
-import random
+from django.shortcuts import render, redirect
 
-from django.shortcuts import render
-from django.template import RequestContext
-from app.service import TestService
+from app.forms import TestForm
 from app.models import Test
 
 
 def add(request):
-    # context = RequestContext(request)
-    if request.method == "POST":
-        # tutaj trzeba własnie wycignac dane z formuarza--------
-        t = Test()
-
-        t.test_name = 'dodaj'
-        t.input_data = 'input_data'
-        t.output_data = 'output_data'
-
-        # --------- sam zapis do bazy działa poprawnie
-        t.save()
-        # lub wykorzystac do tego celu metde/funkcje z TestService
-
-        return render(request,'view/test/added.html', {'test': t})
-
+    if request.method == 'POST':
+        form = TestForm(request.POST)
+        form.save()
+        return redirect('test_list')
     else:
-        return render(request, 'view/test/add.html')
+        form = TestForm()
+        return render(request, 'view/test/add.html', {'form': form})
 
 
-# def createTest():
-#     t = Test()
-#     t.id = random.randint(0, 100)
-#     t.input_data = 'input data'
-#     t.output_data = 'output data'
+def list(request):
+    return render(request, 'view/test/list.html', {'model': Test.objects.all()})
