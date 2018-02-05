@@ -49,7 +49,7 @@ class TestService(object):
                 executionTime = self.calculateExecutionTime(startTime)
                 validationResult = "ok" if self.checkResult(out, test.output_data) else "fail"
             except subprocess.TimeoutExpired as exc:
-                validationResult = "timedout" # przekroczono czas
+                validationResult = "timedout"
                 executionTime = -2
             except subprocess.SubprocessError as exc:
                 validationResult = "error"

@@ -29,13 +29,13 @@
                     {% if testResult.result == "ok" %}
                         <span class="badge badge-success">OK</span>
                     {% elif testResult.result == "fail" %}
-                        <span class="badge badge-error">Fail</span>
+                        <span class="badge badge-warning">Zla odpowiedz</span>
                     {% elif testResult.result == "error" %}
-                        <span class="badge badge-error">Error</span>
+                        <span class="badge badge-danger">Blad</span>
                     {% elif testResult.result == "timedout" %}
-                        <span class="badge badge-error">Timed Out</span>
+                        <span class="badge badge-danger">Przekroczenie czasu</span>
                     {% elif testResult.result == "inprogress" %}
-                        <span class="badge badge-error">In Progress</span>
+                        <span class="badge badge-default">W trakcie wykonywania</span>
                     {% endif %}
                 </td>
             </tr>

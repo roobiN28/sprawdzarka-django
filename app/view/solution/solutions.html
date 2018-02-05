@@ -8,10 +8,10 @@
         {% for solution in solutions %}
             <a href="/solution/details/{{ solution.id }}/" class="list-group-item list-group-item-action">
                 {{ solution.add_date }}
-                {% if solution.getAllTestPassed %}
+                {% if solution.allTestPassed %}
                     <span class="badge badge-success pull-right">OK</span>
                 {% else %}
-                    <span class="badge badge-error">Fail</span>
+                    <span class="badge badge-danger pull-right">ZLE</span>
                 {% endif %}
             </a>
         {% endfor %}

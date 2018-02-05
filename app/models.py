@@ -5,7 +5,7 @@ class Solution(models.Model):
     program_code = models.CharField('Kod programu napisany w Python', max_length=800000)
     add_date = models.DateTimeField('Data dodania', auto_now_add=True)
 
-    def getAllTestPassed(self):
+    def allTestPassed(self):
         return all(testResult.result == "ok" for testResult in self.testresult_set.all())
 
 
