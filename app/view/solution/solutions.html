@@ -8,7 +8,11 @@
         {% for solution in solutions %}
             <a href="/solution/details/{{ solution.id }}/" class="list-group-item list-group-item-action">
                 {{ solution.add_date }}
-                <span class="badge badge-success pull-right">OK</span>
+                {% if solution.getAllTestPassed %}
+                    <span class="badge badge-success pull-right">OK</span>
+                {% else %}
+                    <span class="badge badge-error">Fail</span>
+                {% endif %}
             </a>
         {% endfor %}
     </div>

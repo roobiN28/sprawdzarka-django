@@ -24,12 +24,18 @@
         <tbody>
         {% for testResult in solution.testresult_set.all %}
             <tr>
-                <td>{{ testResult.time }}ms</td>
+                <td>{{ testResult.time }} ms</td>
                 <td>
-                    {% if testResult.result %}
+                    {% if testResult.result == "ok" %}
                         <span class="badge badge-success">OK</span>
-                    {% else %}
-                        <span class="badge badge-error">Błąd</span>
+                    {% elif testResult.result == "fail" %}
+                        <span class="badge badge-error">Fail</span>
+                    {% elif testResult.result == "error" %}
+                        <span class="badge badge-error">Error</span>
+                    {% elif testResult.result == "timedout" %}
+                        <span class="badge badge-error">Timed Out</span>
+                    {% elif testResult.result == "inprogress" %}
+                        <span class="badge badge-error">In Progress</span>
                     {% endif %}
                 </td>
             </tr>

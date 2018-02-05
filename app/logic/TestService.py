@@ -40,13 +40,24 @@ class TestService(object):
 
     def doTest(self):
         for test in Test.objects.all():
+            testResult = TestResult().create(-1, "inprogress", self._solution, test)
+            testResult.save()
             self.createFile(self._solution.program_code)
             startTime = time.time()
-            out = subprocess.check_output(self._command, input=self.convertArgsToBytes(test.input_data))
-            executionTime = self.calculateExecutionTime(startTime)
-            validationResult = self.checkResult(out, test.output_data)
+            try:
+                out = subprocess.check_output(self._command, input=self.convertArgsToBytes(test.input_data), timeout=20)
+                executionTime = self.calculateExecutionTime(startTime)
+                validationResult = "ok" if self.checkResult(out, test.output_data) else "fail"
+            except subprocess.TimeoutExpired as exc:
+                validationResult = "timedout" # przekroczono czas
+                executionTime = -2
+            except subprocess.SubprocessError as exc:
+                validationResult = "error"
+                executionTime = -3
 
-            TestResult().create(executionTime,validationResult,self._solution,test).save()
+            testResult.time = executionTime
+            testResult.result = validationResult
+            testResult.save()
 
             self.removeFile()
 

@@ -1,10 +1,12 @@
 from django.db import models
-from app.static import TestResultChoices
 
 
 class Solution(models.Model):
     program_code = models.CharField('Kod programu napisany w Python', max_length=800000)
     add_date = models.DateTimeField('Data dodania', auto_now_add=True)
+
+    def getAllTestPassed(self):
+        return all(testResult.result == "ok" for testResult in self.testresult_set.all())
 
 
 class Test(models.Model):
@@ -16,7 +18,8 @@ class Test(models.Model):
 
 class TestResult(models.Model):
     time = models.IntegerField()
-    result = models.BooleanField()  # TODO: {OK, FAIL, IN-PROGRESS, ERROR}
+    # result = models.BooleanField()  # TODO: {OK, FAIL, IN-PROGRESS, ERROR}
+    result = models.CharField(max_length=10)
     solution = models.ForeignKey(Solution, on_delete=models.CASCADE)
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
 
