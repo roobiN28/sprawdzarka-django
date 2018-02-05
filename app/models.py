@@ -1,4 +1,5 @@
 from django.db import models
+from app.static import TestResultChoices
 
 
 class Solution(models.Model):
@@ -15,6 +16,15 @@ class Test(models.Model):
 
 class TestResult(models.Model):
     time = models.IntegerField()
-    result = models.BooleanField()
+    result = models.BooleanField()  # TODO: {OK, FAIL, IN-PROGRESS, ERROR}
     solution = models.ForeignKey(Solution, on_delete=models.CASCADE)
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
+
+    @classmethod
+    def create(cls, time, result, solution, test):
+        testResult = cls(time=time,
+                         result=result,
+                         solution=solution,
+                         test=test)
+
+        return testResult

@@ -24,7 +24,7 @@
         <tbody>
         {% for testResult in solution.testresult_set.all %}
             <tr>
-                <td>{{ testResult.time }}ms???</td>
+                <td>{{ testResult.time }}ms</td>
                 <td>
                     {% if testResult.result %}
                         <span class="badge badge-success">OK</span>

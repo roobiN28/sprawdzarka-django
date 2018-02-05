@@ -1,15 +1,17 @@
 from django.shortcuts import render
 
 from app.forms import SolutionForm
+from app.logic.TestService import TestService
 from app.models import Solution
 
+import pdb
 
 def add(request):
     if request.method == 'POST':
         form = SolutionForm(request.POST)
         solution = form.save()
 
-        # TODO rozpoczecie liczenia algorytmu dla rozwiązania
+        TestService(solution).doTest()
         return render(request, 'view/solution/added.html', {'solution': solution})
     else:
         form = SolutionForm()
