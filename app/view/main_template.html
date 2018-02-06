@@ -49,8 +49,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/test/list">Testy</a>
                 </li>
-                {% if request.user.is_authenticated %}
-                    <li class="navbar-text">Zalogowano: [{{ user.get_username }}]</li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Wyloguj: [{{ user.get_username }}]</a>
+                    </li>
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="/registration/login">Logowanie</a>

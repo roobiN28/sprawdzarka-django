@@ -49,4 +49,9 @@ def register_page(request):
     return render(request, 'view/registration/register.html',{ 'form': form})
 
 
+def logout_page(request):
+    logout(request)
+    return render(request, 'view/homepage.html', {})
+
+
 
