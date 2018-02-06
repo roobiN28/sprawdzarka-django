@@ -28,10 +28,12 @@ urlpatterns = [
     path('solution/details/<int:id>/', solution.details, name="solution_details"),
     path('test/add', test.add, name="test_add"),
     path('test/list', test.list, name='test_list'),
-    path('registration/login',homepage.login_page,name='login'),
-    path('registration/register', homepage.register_page,name='register'),
     path('algorithm/add', algorithm.add, name="algorithm_add"),
     path('algorithm/list', algorithm.list, name='algorithm_list'),
+    # path('registration/login','django.contrib.auth.views.login'),
+    path('registration/login',homepage.login_page,name='login'),
+
+    path('registration/register', homepage.register_page,name='register'),
     path('registration/register_success', homepage.register_page,name='register_success'),
 
 ]

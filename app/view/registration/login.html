@@ -7,7 +7,7 @@ Logowanie jest wymagane, jeżeli chcesz sprawdzic poprawość swojego kodu.
 <p>
 <div style="margin-left:35%;margin-right:35%;">
 <fieldset>
-    <form method="post" action="view/homepage">{% csrf_token %}
+    <form method="post" action="login">{% csrf_token %}
     <div style="text-align:left";>{{ form.as_p }}</div>
     <input type="hidden" name="next" value="/" />
     <input type="submit" value="Logowanie"/>    <input type="reset" value="Wartości domyślne"/>
