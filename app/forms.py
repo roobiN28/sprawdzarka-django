@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Test, Solution
+from .models import Test, Solution, Algorithm
 
 
 class TestForm(forms.ModelForm):
@@ -14,7 +14,8 @@ class TestForm(forms.ModelForm):
 class SolutionForm(forms.ModelForm):
     class Meta:
         model = Solution
-        fields = ('program_code',)
+        fields = ('program_code', 'algorithm')
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(label="Login:", max_length=30)
@@ -38,10 +39,17 @@ class LoginForm(forms.Form):
             raise forms.ValidationError("Niepoprawne hasło")
         raise forms.ValidationError("Niepoprawny login")
 
+
 class RegisterForm(forms.Form):
-    username = forms.CharField(label="Login:",max_length=30)
+    username = forms.CharField(label="Login:", max_length=30)
     email = forms.EmailField(label="Email:")
-    password1 = forms.CharField(label="Hasło:",widget=forms.PasswordInput())
-    password2 = forms.CharField(label="Powtórz hasło:",widget=forms.PasswordInput())
-    phone = forms.CharField(label="Telefon:",max_length=20,required=False)
-    log_on = forms.BooleanField(label="Logowanie po rejestracji:",required=False)
+    password1 = forms.CharField(label="Hasło:", widget=forms.PasswordInput())
+    password2 = forms.CharField(label="Powtórz hasło:", widget=forms.PasswordInput())
+    phone = forms.CharField(label="Telefon:", max_length=20, required=False)
+    log_on = forms.BooleanField(label="Logowanie po rejestracji:", required=False)
+
+
+class AlgorithmForm(forms.ModelForm):
+    class Meta:
+        model = Algorithm
+        fields = ('name', 'description')

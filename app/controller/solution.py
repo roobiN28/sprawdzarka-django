@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from app.forms import SolutionForm
 from app.logic.TestService import TestService
-from app.models import Solution
+from app.models import Solution, Algorithm
 
 import pdb
 
@@ -15,7 +15,7 @@ def add(request):
         return render(request, 'view/solution/added.html', {'solution': solution})
     else:
         form = SolutionForm()
-        return render(request, 'view/solution/add.html', {'form': form})
+        return render(request, 'view/solution/add.html', {'form': form, 'algorithms': Algorithm.objects.all()})
 
 
 def showAll(request):

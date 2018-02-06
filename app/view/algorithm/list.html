@@ -1,0 +1,16 @@
+{% extends "view/main_template.html" %}
+{% block title %}Algorytmy{% endblock %}
+
+{% block content %}
+    <h1>Lista algorytmów</h1>
+    <hr/>
+    <div id="accordion-test">
+        <div class="list-group">
+            {% for algorithm in model %}
+                <a href="/algorithm/details/{{ algorithm.id }}/" class="list-group-item list-group-item-action">
+                    {{ algorithm.name }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

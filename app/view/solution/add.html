@@ -7,6 +7,14 @@
     <form name="form" action="/solution/add" method="POST">
         {% csrf_token %}
         <div class="form-group">
+            <label for="algorithm">Algorytm</label>
+            <select class="custom-select" id="{{ form.algorithm.id_for_label }}" name="{{ form.algorithm.name }}">
+                {% for algorithm in algorithms %}
+                    <option value="{{ algorithm.id }}">{{ algorithm.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
             <label for="{{ form.program_code.id_for_label }}">{{ form.program_code.label }}</label>
             <textarea class="form-control" id="{{ form.program_code.id_for_label }}" name="{{ form.program_code.name }}"
                       rows="15"
