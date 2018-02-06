@@ -32,7 +32,7 @@ class LoginForm(forms.Form):
             raise forms.ValidationError("Niepoprawny login")
 
     def clean_password(self):
-        if self.cleaned_data.has_key('username'):
+        if 'username' in self.cleaned_data:
             username = self.cleaned_data['username']
             password = self.cleaned_data['password']
             user = User.objects.get(username=username)

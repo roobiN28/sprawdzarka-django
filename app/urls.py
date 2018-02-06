@@ -15,8 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.controller import homepage, solution, test
-from app.controller import algorithm
+from app.controller import homepage, solution, test, algorithm
 
 admin.autodiscover()
 
