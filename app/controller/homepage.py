@@ -19,9 +19,10 @@ def login_page(request):
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             login(request, user)
             template = get_template("view/homepage.html")
-            variables = RequestContext(request, {'user': user})
-            output = template.render(variables)
-            return HttpResponseRedirect("/")
+            # variables = RequestContext(request, {'user': user})
+            # output = template.render(variables)
+            return render(request, 'view/homepage.html', {'user': user})
+            # return HttpResponseRedirect("/")
     else:
         form = LoginForm()
     template = get_template("view/registration/login.html")
@@ -30,7 +31,8 @@ def login_page(request):
         'request' : request,
         'form': form
     }
-    return HttpResponse(template.render(variables))
+    # return HttpResponse(template.render(variables))
+    return render(request, 'view/homepage.html', {'form': form})
 
 def register_page(request):
     if request.method == 'POST':

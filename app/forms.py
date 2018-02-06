@@ -50,16 +50,6 @@ class RegisterForm(forms.Form):
     phone = forms.CharField(label="Telefon:", max_length=20, required=False)
     log_on = forms.BooleanField(label="Logowanie po rejestracji:", required=False)
 
-
-class AlgorithmForm(forms.ModelForm):
-    class Meta:
-        model = Algorithm
-        fields = ('name', 'description')
-    password1 = forms.CharField(label="Hasło:",widget=forms.PasswordInput())
-    password2 = forms.CharField(label="Powtórz hasło:",widget=forms.PasswordInput())
-    phone = forms.CharField(label="Telefon:",max_length=20,required=False)
-    log_on = forms.BooleanField(label="Logowanie po rejestracji:",required=False)
-
     def clean_password2(self):
         password1 = self.cleaned_data['password1']
         password2 = self.cleaned_data['password2']
@@ -77,3 +67,10 @@ class AlgorithmForm(forms.ModelForm):
         except ObjectDoesNotExist:
             return username
         raise forms.ValidationError("Taki użytkownik już istnieje")
+
+
+class AlgorithmForm(forms.ModelForm):
+    class Meta:
+        model = Algorithm
+        fields = ('name', 'description')
+

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app.controller import homepage, solution, test
-from controller import algorithm
+from app.controller import algorithm
 
 admin.autodiscover()
 
@@ -32,6 +32,6 @@ urlpatterns = [
     path('registration/register', homepage.register_page,name='register'),
     path('algorithm/add', algorithm.add, name="algorithm_add"),
     path('algorithm/list', algorithm.list, name='algorithm_list'),
-    # path('registration/register_success', homepage.register_page,name='register_success'),
+    path('registration/register_success', homepage.register_page,name='register_success'),
 
 ]
