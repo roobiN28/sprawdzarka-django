@@ -2,6 +2,16 @@
 {% block title %}Sprawdzarka{% endblock %}
 {% block content %}
 
-    <h3>Cześć</h3>
-    <h2>To jest strona główna napisana przez RPK:</h2>
+    <h3>Cześć
+        {% if user.is_authenticated %}
+            {{ user.get_username }}
+        {% else %}
+            Gosciu
+        {% endif %}
+        <h2>To jest strona główna napisana przez RPK</h2>
+    </h3>
+
+    {% if user.is_superuser %}
+        <a class="nav-link" href="/admin">Panel admina</a>
+    {% endif %}
 {% endblock %}
