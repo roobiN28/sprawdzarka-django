@@ -32,5 +32,6 @@ urlpatterns = [
     path('registration/register', homepage.register_page,name='register'),
     path('algorithm/add', algorithm.add, name="algorithm_add"),
     path('algorithm/list', algorithm.list, name='algorithm_list'),
+    # path('registration/register_success', homepage.register_page,name='register_success'),
 
 ]

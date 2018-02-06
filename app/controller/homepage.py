@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import login,authenticate,logout
@@ -32,12 +33,39 @@ def login_page(request):
     return HttpResponse(template.render(variables))
 
 def register_page(request):
-    template = get_template('view/registration/register.html')
-    form = RegisterForm()
-    # variables = RequestContext(request,{'form':form})
-    variables = {
-        'request' : request,
-        'form': form
-    }
-    # output = template.render(variables)
-    return HttpResponse(template.render(variables))
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(username=form.cleaned_data['username'],password=form.cleaned_data['password1'],email=form.cleaned_data['email'])
+            user.last_name = form.cleaned_data['phone']
+            user.save()
+            if form.cleaned_data['log_on']:
+                user = authenticate(username=form.cleaned_data['username'],password=form.cleaned_data['password1'])
+                login(request,user)
+                # template = get_template("view/homepage.html")
+                # variables = {
+                #     'request': request,
+                #     'user':user
+                # }
+                return render(request, 'view/homepage.html',{'user':user})
+                # return render(request, 'view/solution/add.html', {'form': form})
+                # return HttpResponseRedirect(template.render(variables))
+            else:
+                # template = get_template("view/registration/register_success.html")
+                # variables = {
+                #     'request': request,
+                #     'username':form.cleaned_data['username']
+                # }
+                return render(request, 'view/registration/register_success.html',{'username':form.cleaned_data['username']})
+                # return HttpResponse(template.render(variables))
+    else:
+        form = RegisterForm()
+    # template = get_template("view/registration/register.html")
+    # variables = {
+    #     'request': request,
+    #     'form': form
+    # }
+    return render(request, 'view/registration/register.html',{ 'form': form})
+    # return HttpResponse(template.render(variables))
+
+

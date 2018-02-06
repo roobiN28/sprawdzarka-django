@@ -8,7 +8,7 @@ Rejetracja jest wymagana, jeżeli chcesz sprawdzic poprawność swojego kodu.
 <div style="margin-left:35%;margin-right:35%;">
 <fieldset>
   <legend> Wszystkie pola oprócz numeru telefonu należy wypełnić </legend>
-    <form method="post" action=".">{% csrf_token %}
+    <form method="post" action="register">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Rejestracja">    <input type="reset" value="Wartości początkowe">
   </form>
