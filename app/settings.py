@@ -121,3 +121,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "app/static"),
 )
+LOGOUT_REDIRECT_URL = '/'

@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.contrib.auth import login,authenticate,logout
-from django.template.loader import get_template
 
 from app.forms import LoginForm, RegisterForm
 
@@ -16,19 +15,9 @@ def login_page(request):
         if form.is_valid():
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             login(request, user)
-            template = get_template("view/homepage.html")
-            # variables = RequestContext(request, {'user': user})
-            # output = template.render(variables)
             return render(request, 'view/homepage.html', {'user': user})
-            # return HttpResponseRedirect("/")
     else:
         form = LoginForm()
-    template = get_template("view/homepage.html")
-    # variables = RequestContext(request, {'form': form})
-    variables ={
-        'request' : request,
-        'form': form
-    }
     return render(request, 'view/registration/login.html', {'form': form})
 
 def register_page(request):
