@@ -46,16 +46,14 @@ class TestService(object):
             startTime = time.time()
             try:
                 out = subprocess.check_output(self._command, input=self.convertArgsToBytes(test.input_data), timeout=20)
-                executionTime = self.calculateExecutionTime(startTime)
-                validationResult = "ok" if self.checkResult(out, test.output_data) else "fail"
+                validationResult = "ok" if \
+                    (out.decode().rstrip().lstrip('-').isdigit() and self.checkResult(out, test.output_data)) else "fail"
             except subprocess.TimeoutExpired:
-                validationResult = self.calculateExecutionTime(startTime)
-                executionTime = -2
+                validationResult = "timedout"
             except subprocess.SubprocessError:
                 validationResult = "error"
-                executionTime = -3
 
-            testResult.time = executionTime
+            testResult.time = self.calculateExecutionTime(startTime)
             testResult.result = validationResult
             testResult.save()
 
