@@ -27,3 +27,6 @@ body {
     min-height: 70px;
 }
 
+.badge-secondary {
+    float: right;
+}

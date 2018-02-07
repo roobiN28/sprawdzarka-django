@@ -29,6 +29,7 @@ urlpatterns = [
     path('test/list', test.list, name='test_list'),
     path('algorithm/add', algorithm.add, name="algorithm_add"),
     path('algorithm/list', algorithm.list, name='algorithm_list'),
+    path('algorithm/details/<int:id>/', algorithm.details, name='algorithm_details'),
     # path('registration/login','django.contrib.auth.views.login'),
     path('logout',homepage.logout_page,name='logout'),
     path('registration/login',homepage.login_page,name='login'),

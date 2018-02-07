@@ -1,11 +1,17 @@
 {% extends "view/main_template.html" %}
-{% block title %}Rozwiązania{% endblock %}
+{% block title %}Algorytm{% endblock %}
 {% block content %}
     <h1>Lista programów</h1>
     <hr/>
-
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">{{ model.name }}</h1>
+            <p class="lead"><pre><code>{{ model.description }}</code></pre></p>
+        </div>
+    </div>
+    <p></p>
     <div class="list-group">
-        {% for solution in solutions %}
+        {% for solution in model.solution_set.all %}
             <a href="/solution/details/{{ solution.id }}/" class="list-group-item list-group-item-action">
                 {{ solution.add_date }}
                 {% if solution.allTestPassed %}
@@ -13,8 +19,12 @@
                 {% else %}
                     <span class="badge badge-danger pull-right">ZLE</span>
                 {% endif %}
-                <span class="badge badge-secondary pull-right">{{ solution.algorithm.name }}</span>
             </a>
         {% endfor %}
     </div>
+    {% if model.solution_set.all.count == 0 %}
+        <div class="alert alert-danger" role="alert">
+            Brak rozwiazań. Dodaj jakieś
+        </div>
+    {% endif %}
 {% endblock %}

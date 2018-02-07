@@ -16,3 +16,8 @@ def add(request):
 
 def list(request):
     return render(request, 'view/algorithm/list.html', {'model': Algorithm.objects.all()})
+
+def details(request, id):
+
+    algorithm = Algorithm.objects.get(id=id)
+    return render(request, 'view/algorithm/details.html', {'model': algorithm})
