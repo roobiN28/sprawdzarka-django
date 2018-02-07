@@ -10,7 +10,7 @@ from .models import Test, Solution, Algorithm
 class TestForm(forms.ModelForm):
     class Meta:
         model = Test
-        fields = ('input_data', 'output_data')
+        fields = ('input_data', 'output_data', 'algorithm')
 
 
 class SolutionForm(forms.ModelForm):

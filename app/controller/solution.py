@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from app.forms import SolutionForm
+from app.forms import SolutionForm, AlgorithmForm
 from app.logic.TestService import TestService
 from app.models import Solution, Algorithm
 
@@ -10,7 +10,6 @@ def add(request):
     if request.method == 'POST':
         form = SolutionForm(request.POST)
         solution = form.save()
-
         TestService(solution).doTest()
         return render(request, 'view/solution/added.html', {'solution': solution})
     else:

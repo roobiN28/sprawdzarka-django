@@ -25,7 +25,6 @@ class Test(models.Model):
 
 class TestResult(models.Model):
     time = models.IntegerField()
-    # result = models.BooleanField()  # TODO: {OK, FAIL, IN-PROGRESS, ERROR}
     result = models.CharField(max_length=10)
     solution = models.ForeignKey(Solution, on_delete=models.CASCADE)
     test = models.ForeignKey(Test, on_delete=models.CASCADE)

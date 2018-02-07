@@ -39,7 +39,7 @@ class TestService(object):
 
 
     def doTest(self):
-        for test in Test.objects.all():
+        for test in Test.objects.filter(algorithm__id=self._solution.algorithm.id):
             testResult = TestResult().create(-1, "inprogress", self._solution, test)
             testResult.save()
             self.createFile(self._solution.program_code)
@@ -48,10 +48,10 @@ class TestService(object):
                 out = subprocess.check_output(self._command, input=self.convertArgsToBytes(test.input_data), timeout=20)
                 executionTime = self.calculateExecutionTime(startTime)
                 validationResult = "ok" if self.checkResult(out, test.output_data) else "fail"
-            except subprocess.TimeoutExpired as exc:
-                validationResult = "timedout"
+            except subprocess.TimeoutExpired:
+                validationResult = self.calculateExecutionTime(startTime)
                 executionTime = -2
-            except subprocess.SubprocessError as exc:
+            except subprocess.SubprocessError:
                 validationResult = "error"
                 executionTime = -3
 
